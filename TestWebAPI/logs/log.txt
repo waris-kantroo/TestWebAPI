@@ -1,0 +1,1 @@
+DEBUG 2019-01-03 16:33:26,565 493467ms CustomerController     Get                - Hello Debug from Web API
