@@ -57,7 +57,6 @@ namespace TestWebAPI.Controllers
             //gets all customer logic
         }
 
-
         [HttpGet]
         [Route("api/customers/currentMonth")]
         public List<Customer> GetCustomerByCurrentMonth()
