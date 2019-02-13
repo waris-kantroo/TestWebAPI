@@ -21,6 +21,21 @@ namespace TestWebAPI.Controllers
         public List<Customer> Get()
         {
 
+            // bubble sort
+            List<int> a = new List<int> { 3, 1, 5, 3, 8, 0, 4, 7 };
+            int temp;
+            // foreach(int i in a)
+            for (int i = 1; i <= a.Count; i++)
+                for (int j = 0; j < a.Count - i; j++)
+                    if (a[j] > a[j + 1])
+                    {
+                        temp = a[j];
+                        a[j] = a[j + 1];
+                        a[j + 1] = temp;
+                    }
+            List<int> sortedList = a.Distinct().ToList();
+            // till here
+
             // Modify the list
             var fakeList = CustomerList();
             foreach(Customer i in fakeList)
