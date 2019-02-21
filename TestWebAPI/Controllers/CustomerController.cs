@@ -53,10 +53,10 @@ namespace TestWebAPI.Controllers
             log.Debug("Hello Debug from Web API");
             var repeatedValues = new StringBuilder("AAABBCCDDEEEFFF");
             log.Info("calling get method");
-            foreach(char a in repeatedValues.ToString())
+            foreach(char b in repeatedValues.ToString())
             {
 
-                repeatedValues.Replace(a.ToString(), "").Append(a.ToString());
+                repeatedValues.Replace(b.ToString(), "").Append(b.ToString());
             }
             var unique = repeatedValues.ToString();
 
