@@ -21,8 +21,38 @@ namespace TestWebAPI.Controllers
         public List<Customer> Get()
         {
 
-            // bubble sort
-            List<int> a = new List<int> { 3, 1, 5, 3, 8, 0, 4, 7 };
+            // connect to DB here
+            using (EmployeesEntities dbContext = new EmployeesEntities())
+            {
+                // fetch all employees
+                var employees = dbContext.Employees.ToList();
+                List<Customer> custList = new List<Customer>();
+                bool employeeExist = false;
+                foreach (var emp in  employees)
+                {
+                    employeeExist = true;
+                    Customer cust = new Customer();
+                    cust.Id = emp.EmployeeId;
+                    cust.FullName = emp.EmployeeName;
+                    cust.DOB =  DateTime.Parse(emp.EmployeeDOB.ToString());
+                    cust.address = InitializeAddress();
+                    custList.Add(cust);
+                }
+                // adding new employees
+
+                Employee newCust = new Employee();
+                newCust.EmployeeName = "Kantroo";
+                newCust.EmployeeDesignation = "Creator";
+                newCust.EmployeeDOB = DateTime.Parse("01/01/1976");
+                dbContext.Employees.Add(newCust);
+                if(!employeeExist)  // add employee if only it is not there
+                dbContext.SaveChanges();
+
+                return custList;
+
+                // till here
+                // bubble sort
+                List<int> a = new List<int> { 3, 1, 5, 3, 8, 0, 4, 7 };
             int temp;
             // foreach(int i in a)
             for (int i = 1; i <= a.Count; i++)
@@ -69,7 +99,8 @@ namespace TestWebAPI.Controllers
              new Customer {Id=3,FullName="Rafa Nadal",DOB = DateTime.Parse("08/03/1983"),address = InitializeThirdAddress()},
              new Customer {Id=4,FullName="Novak Djokovic",DOB = DateTime.Parse("08/03/1985"),address = InitializeFourthAddress()}
             };
-            //gets all customer logic
+                //gets all customer logic
+            }
         }
 
         [HttpGet]

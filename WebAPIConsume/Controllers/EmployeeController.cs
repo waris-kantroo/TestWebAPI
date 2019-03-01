@@ -15,6 +15,8 @@ namespace WebAPIConsume.Controllers
         [Route("api/AllEmployees")]
         public IEnumerable<string> All()
         {
+
+
             return new string[] { "Waris", "Kantroo" };
         }
         [HttpGet]
